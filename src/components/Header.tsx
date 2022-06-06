@@ -12,7 +12,7 @@ function Header() {
   const [activeItem, setActiveItem] = useState<"Stays" | "Flights">("Stays");
   const location = useLocation();
 
-  console.log(location);
+
   return (
     <div className="w-full bg-[#003580] flex justify-center">
       <div className="max-w-[1048px] flex w-full text-white p-3 flex-col gap-8">

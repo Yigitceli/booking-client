@@ -4,6 +4,7 @@ import "react-date-range/dist/styles.css";
 import "react-date-range/dist/theme/default.css";
 import { DateRange, RangeKeyDict } from "react-date-range";
 import useOnClickOutside from "../hooks/useClickOutside";
+import { GiPerson } from "react-icons/gi";
 
 interface IDates {
   startDate: Date | undefined;
@@ -11,9 +12,25 @@ interface IDates {
   key: string | undefined;
 }
 
+interface IOptions {
+  adult: number;
+  room: number;
+  children: number;
+}
+
 function Search() {
   const dateRef = useRef(null);
-  useOnClickOutside(dateRef, () => setDateOpen(false));
+  const optionsRef = useRef(null);
+  const openDateRef = useRef(null)
+  const openOptionsRef = useRef(null)
+  useOnClickOutside(dateRef, () => setDateOpen(false), openDateRef);
+  useOnClickOutside(optionsRef, () => setOptionsOpen(false), openOptionsRef);
+
+  const [options, setOptions] = useState<IOptions>({
+    adult: 1,
+    room: 1,
+    children: 0,
+  });
 
   const [dates, setDates] = useState<IDates>({
     startDate: new Date(),
@@ -22,6 +39,7 @@ function Search() {
   });
 
   const [dateOpen, setDateOpen] = useState<boolean>(false);
+  const [optionsOpen, setOptionsOpen] = useState<boolean>(false);
 
   const handleSelect = (ranges: RangeKeyDict) => {
     setDates({
@@ -33,6 +51,37 @@ function Search() {
 
   const handleDateClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     setDateOpen(!dateOpen);
+  };
+
+  const handleOptionsClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+    setOptionsOpen(!optionsOpen);
+  };
+
+  const optionsClickHandler = (
+    e: React.MouseEvent<HTMLButtonElement>,
+    actionType: "d" | "i"
+  ) => {
+    if (actionType === "d") {
+      const { name } = e.currentTarget;
+      const target = ((options[name as keyof IOptions] as number) -
+        1) as number;
+      setOptions((prev) => {
+        return {
+          ...prev,
+          [name]: target,
+        };
+      });
+    } else {
+      const { name } = e.currentTarget;
+      const target = ((options[name as keyof IOptions] as number) +
+        1) as number;
+      setOptions((prev) => {
+        return {
+          ...prev,
+          [name]: target,
+        };
+      });
+    }
   };
 
   return (
@@ -49,6 +98,7 @@ function Search() {
           <button
             className="flex items-center text-[#d4d4d4] justify-center gap-2"
             onClick={handleDateClick}
+            ref={openDateRef}
           >
             <FaCalendarAlt fontSize={"20px"} />
             <p>
@@ -56,10 +106,17 @@ function Search() {
               {dates?.endDate?.toLocaleDateString()}
             </p>
           </button>
-          <div className="flex items-center text-[#d4d4d4] justify-center gap-2">
-            <FaBed fontSize={"20px"} />
-            <input placeholder="Where are you going?" />
-          </div>
+          <button
+            className="flex items-center text-[#d4d4d4] justify-center gap-2"
+            onClick={handleOptionsClick}
+            ref={openOptionsRef}
+          >
+            <GiPerson fontSize={"20px"} />
+            <p>
+              {options.adult} Adults · {options.children} Children ·{" "}
+              {options.room} Rooms
+            </p>
+          </button>
           <button className="p-2 text-white bg-[#0874c4]">Search</button>
         </div>
         {dateOpen && (
@@ -69,6 +126,76 @@ function Search() {
               onChange={handleSelect}
               minDate={new Date()}
             />
+          </div>
+        )}
+        {optionsOpen && (
+          <div
+            ref={optionsRef}
+            className="text-[#878486] absolute z-10 top-24 right-52 flex flex-col shadow-regular p-4 rounded-xl w-52 gap-2"
+          >
+            <div className="flex justify-between">
+              <span>Adult</span>
+              <div className="flex gap-2 items-center">
+                <button
+                  className="flex items-center justify-center border-2 border-solid border-[#0474c4] w-8 h-8 disabled:cursor-not-allowed"
+                  disabled={options.adult <= 1}
+                  name="adult"
+                  onClick={(e) => optionsClickHandler(e, "d")}
+                >
+                  -
+                </button>
+                <span>{options.adult}</span>
+                <button
+                  className="flex items-center justify-center border-2 border-solid border-[#0474c4] w-8 h-8 disabled:cursor-not-allowed"
+                  name="adult"
+                  onClick={(e) => optionsClickHandler(e, "i")}
+                >
+                  +
+                </button>
+              </div>
+            </div>
+            <div className="flex justify-between">
+              <span>Children</span>
+              <div className="flex gap-2 items-center">
+                <button
+                  className="flex items-center justify-center border-2 border-solid border-[#0474c4] w-8 h-8 disabled:cursor-not-allowed"
+                  disabled={options.children <= 0}
+                  name="children"
+                  onClick={(e) => optionsClickHandler(e, "d")}
+                >
+                  -
+                </button>
+                <span>{options.children}</span>
+                <button
+                  className="flex items-center justify-center border-2 border-solid border-[#0474c4] w-8 h-8 disabled:cursor-not-allowed"
+                  name="children"
+                  onClick={(e) => optionsClickHandler(e, "i")}
+                >
+                  +
+                </button>
+              </div>
+            </div>
+            <div className="flex justify-between">
+              <span>Room</span>
+              <div className="flex gap-2 items-center">
+                <button
+                  className="flex items-center justify-center border-2 border-solid border-[#0474c4] w-8 h-8 disabled:cursor-not-allowed"
+                  disabled={options.room <= 1}
+                  name="room"
+                  onClick={(e) => optionsClickHandler(e, "d")}
+                >
+                  -
+                </button>
+                <span>{options.room}</span>
+                <button
+                  className="flex items-center justify-center border-2 border-solid border-[#0474c4] w-8 h-8 disabled:cursor-not-allowed"
+                  name="room"
+                  onClick={(e) => optionsClickHandler(e, "i")}
+                >
+                  +
+                </button>
+              </div>
+            </div>
           </div>
         )}
       </div>

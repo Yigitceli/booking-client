@@ -1,10 +1,10 @@
 import { useEffect } from "react";
 
-export default function useOnClickOutside(ref:React.MutableRefObject<any>, handler: () => void) {
+export default function useOnClickOutside(ref:React.MutableRefObject<any>, handler: () => void, openRef:React.MutableRefObject<any>) {
   useEffect(
     () => {
       const listener = (event:MouseEvent | TouchEvent) => {        
-        if (!ref.current || ref.current?.contains(event.target)) {          
+        if (!ref.current || ref.current?.contains(event.target) || openRef.current?.contains(event.target)) {          
           return;
         }
         handler();
