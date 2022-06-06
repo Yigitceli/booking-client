@@ -20,14 +20,15 @@ function Header() {
         <div className="w-full flex justify-between items-center">
           <h2 className="font-medium">yigitbooking</h2>
           <div className="flex gap-4 justify-between text-[#003580] text-sm">
-            <button className="bg-white px-2 py-1">Register</button>
-            <button className="bg-white px-2 py-1">Login</button>
+            
+            <button className="bg-white px-2 py-1">Sign In With Google</button>
           </div>
         </div>
         {/* Items Starts */}
         <div className="w-full flex items-center gap-8">
-          {items.map((item) => (
+          {items.map((item, index) => (
             <button
+            key={index}
               className={
                 activeItem === item.itemName
                   ? "flex items-center gap-2 text-xl border-[1px] border-white border-solid p-2 rounded-3xl"

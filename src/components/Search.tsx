@@ -120,7 +120,7 @@ function Search() {
           <button className="p-2 text-white bg-[#0874c4]">Search</button>
         </div>
         {dateOpen && (
-          <div ref={dateRef} className="absolute z-10 top-24 left-80">
+          <div ref={dateRef} className="absolute z-10 top-24 left-80 shadow-regular">
             <DateRange
               ranges={[dates]}
               onChange={handleSelect}
