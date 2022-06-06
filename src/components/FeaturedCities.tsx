@@ -1,6 +1,6 @@
 import React from "react";
 
-function Featured() {
+function FeaturedCities() {
   return (
     <div className="max-w-[1024px] w-full flex mt-12 gap-4 justify-between text-white font-bold text-3xl">
       <div className="transition-all duration-100 hover:scale-105 cursor-pointer flex relative flex-1 h-[250px] rounded-xl overflow-hidden">
@@ -40,4 +40,4 @@ function Featured() {
   );
 }
 
-export default Featured;
+export default FeaturedCities;

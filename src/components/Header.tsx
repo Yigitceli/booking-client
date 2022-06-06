@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { FaBed } from "react-icons/fa";
 import { IoAirplane } from "react-icons/io5";
 import { useLocation } from "react-router-dom";
+import {AiFillGoogleCircle} from "react-icons/ai"
 
 const items = [
   { icon: <FaBed />, itemName: "Stays" },
@@ -21,7 +22,7 @@ function Header() {
           <h2 className="font-medium">yigitbooking</h2>
           <div className="flex gap-4 justify-between text-[#003580] text-sm">
             
-            <button className="bg-white px-2 py-1">Sign In With Google</button>
+            <button className="bg-white px-2 py-1 flex gap-2 items-center">Sign In With Google <AiFillGoogleCircle fontSize={24} color="red"/></button>
           </div>
         </div>
         {/* Items Starts */}

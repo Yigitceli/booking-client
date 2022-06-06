@@ -120,7 +120,7 @@ function Search() {
           <button className="p-2 text-white bg-[#0874c4]">Search</button>
         </div>
         {dateOpen && (
-          <div ref={dateRef} className="absolute z-10 top-24 left-80 shadow-regular">
+          <div ref={dateRef} className="absolute z-20 top-24 left-80 shadow-regular">
             <DateRange
               ranges={[dates]}
               onChange={handleSelect}
@@ -131,7 +131,7 @@ function Search() {
         {optionsOpen && (
           <div
             ref={optionsRef}
-            className="text-[#878486] absolute z-10 top-24 right-52 flex flex-col shadow-regular p-4 rounded-xl w-52 gap-2 bg-white"
+            className="text-[#878486] absolute z-20 top-24 right-52 flex flex-col shadow-regular p-4 rounded-xl w-52 gap-2 bg-white"
           >
             <div className="flex justify-between">
               <span>Adult</span>
