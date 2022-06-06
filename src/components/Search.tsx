@@ -86,7 +86,7 @@ function Search() {
 
   return (
     <div className="w-full bg-[#003580] flex justify-center h-16">
-      <div className="max-w-[1048px] flex w-full p-3 relative ">
+      <div className="max-w-[1024px] flex w-full p-3 relative ">
         <div className="absolute left-0 top-8 flex w-full border-[3px] border-solid border-[#febb02] bg-white p-2 rounded-lg justify-around">
           <div className="flex items-center text-[#d4d4d4] justify-center gap-2 ">
             <FaBed fontSize={"20px"} />
@@ -131,7 +131,7 @@ function Search() {
         {optionsOpen && (
           <div
             ref={optionsRef}
-            className="text-[#878486] absolute z-10 top-24 right-52 flex flex-col shadow-regular p-4 rounded-xl w-52 gap-2"
+            className="text-[#878486] absolute z-10 top-24 right-52 flex flex-col shadow-regular p-4 rounded-xl w-52 gap-2 bg-white"
           >
             <div className="flex justify-between">
               <span>Adult</span>

@@ -15,7 +15,7 @@ function Header() {
 
   return (
     <div className="w-full bg-[#003580] flex justify-center">
-      <div className="max-w-[1048px] flex w-full text-white p-3 flex-col gap-8">
+      <div className="max-w-[1024px] flex w-full text-white p-3 flex-col gap-8">
         {/* Header Starts */}
         <div className="w-full flex justify-between items-center">
           <h2 className="font-medium">yigitbooking</h2>
