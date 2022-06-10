@@ -9,7 +9,7 @@ import Search from "../components/Search";
 
 function Home() {
   return (
-    <div className="w-full h-full">
+    <div className="w-screen h-screen">
       <Header />
       <Banner />
       <Search />

@@ -3,6 +3,7 @@ import { FaBed } from "react-icons/fa";
 import { IoAirplane } from "react-icons/io5";
 import { useLocation } from "react-router-dom";
 import {AiFillGoogleCircle} from "react-icons/ai"
+import { Link } from "react-router-dom";
 
 const items = [
   { icon: <FaBed />, itemName: "Stays" },
@@ -16,17 +17,17 @@ function Header() {
 
   return (
     <div className="w-full bg-[#003580] flex justify-center">
-      <div className="max-w-[1024px] flex w-full text-white p-3 flex-col gap-8">
+      <div className="max-w-[1024px] flex w-full text-white p-3  flex-col gap-8">
         {/* Header Starts */}
         <div className="w-full flex justify-between items-center">
-          <h2 className="font-medium">yigitbooking</h2>
+          <Link to={"/"}><h2 className="font-medium">yigitbooking</h2></Link>
           <div className="flex gap-4 justify-between text-[#003580] text-sm">
             
             <button className="bg-white px-2 py-1 flex gap-2 items-center">Sign In With Google <AiFillGoogleCircle fontSize={24} color="red"/></button>
           </div>
         </div>
         {/* Items Starts */}
-        <div className="w-full flex items-center gap-8">
+        <div className="w-full flex items-center gap-8 pb-4">
           {items.map((item, index) => (
             <button
             key={index}
